@@ -1,0 +1,43 @@
+components
+            -> filter               ->  Filter.jsx              [ Update collageName, Update UniversityName in search ]
+            -> footer               ->  Footer.jsx              [ update links after pages creation   ]
+            -> layout               ->  Layout.jsx              [    ]
+            -> loader               ->  Loader.jsx              [    ]
+            -> modal                ->  Modal.jsx               [    ]
+            -> navBar               ->  NavBar.jsx              [    ]
+            -> projectCard          ->  ProjectCard.jsx         [    ]
+            -> testimonials         ->  Testimonials.jsx        [  update and replace page  ]
+
+context
+            -> myContext.jsx    [ Capitalize  ]
+            -> myState.jsx      [ Capitalize  ]
+
+firebase
+            -> firebaseConfig.jsx [ Capitalize  ]
+
+pages
+            -> admin                -> dashboard    -> Dashboard.jsx
+                                                    -> DashboardTab.jsx
+
+                                    -> pages        -> AddProduct.jsx
+                                                    -> UpdateProduct.jsx
+
+            -> allProject           -> AllProject.jsx
+            -> bookmarks            -> bookmarks.jsx
+            -> home                 -> Home.jsx
+            -> noPage               -> NoPage.jsx
+            -> order                -> Order.jsx
+            -> projectInfo          -> ProjectInfo.jsx
+
+            -> registration         -> Login.jsx
+                                    -> Signin.jsx
+
+redux       -> cardSlice.jsx    [ Capitalize  ]
+            -> store.jsx        [ Capitalize  ]
+
+
+creating contect us page
+
+create about us page
+
+
