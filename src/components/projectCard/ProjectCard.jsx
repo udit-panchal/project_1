@@ -56,7 +56,7 @@ function ProductCard() {
                             const { title, price, description, imageUrl, id } =
                                 item;
                             return (
-                                <div className="p-4 md:w-1/4  drop-shadow-lg ">
+                                <div key={id} className="p-4 md:w-1/4  drop-shadow-lg ">
                                     <div>
                                         <div
                                             className="h-full border-2 hover:shadow-gray-100 hover:shadow-2xl transition-shadow duration-200 ease-in-out    border-gray-200 border-opacity-60 rounded-t-2xl overflow-hidden"

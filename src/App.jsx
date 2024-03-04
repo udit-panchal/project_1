@@ -13,6 +13,7 @@ import ProductInfo from "./pages/projectInfo/ProjectInfo";
 import AddProduct from "./pages/admin/page/AddProduct";
 import UpdateProduct from "./pages/admin/page/UpdateProduct";
 import AllProjects from "./pages/allProjects/AllProjects";
+import AboutUs from "./pages/aboutus/AboutUs";
 
 function App() {
     return (
@@ -47,6 +48,7 @@ function App() {
                         element={<UpdateProduct />}
                     ></Route>
                     <Route path="/allproject" element={<AllProjects/>}></Route>
+                    <Route path="/aboutus" element={<AboutUs />}></Route>
                     <Route path="/*" element={<Nopage />}></Route>
                 </Routes>
             </Router>

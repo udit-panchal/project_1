@@ -7,11 +7,11 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import Loader from "../../components/loader/Loader";
 
 function Login() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    // const [email, setEmail] = useState("");
+    // const [password, setPassword] = useState("");
 
     const context = useContext(myContext);
-    const { loading, setLoading } = context;
+    const { loading, setLoading, email, setEmail, password, setPassword} = context;
 
     const navigate = useNavigate();
 

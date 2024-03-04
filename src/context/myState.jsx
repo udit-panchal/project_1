@@ -18,6 +18,8 @@ import { toast } from "react-toastify";
 function MyState(props) {
     const [mode, setMode] = useState("light");
     const [loading, setLoading] = useState(false);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     // ******* Dark and Light Mode
     const toggleMode = () => {
@@ -56,7 +58,8 @@ function MyState(props) {
             return toast.error("Please fill all fields");
         }
 
-        const productRef = collection(fireDB, "products");
+        
+        const productRef = collection(fireDB, "/products");
         setLoading(true);
         try {
             await addDoc(productRef, products);
@@ -202,6 +205,10 @@ function MyState(props) {
                 setSearchKey,
                 setFilterPrice,
                 setFilterType,
+                email,
+                setEmail,
+                password, 
+                setPassword,
             }}
         >
             {props.children}

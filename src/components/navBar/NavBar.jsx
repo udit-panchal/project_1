@@ -37,6 +37,13 @@ function NavBar() {
         });
     };
 
+    const login = () => {
+        setTimeout(() => {
+        window.location.href = "/login";
+            
+        }, 500);
+    };
+
     const bookmarkItem = useSelector((state) => state.cart);
 
     return (
@@ -104,25 +111,6 @@ function NavBar() {
                                         All Products
                                     </Link>
 
-                                    {user ? (
-                                        <div className="flow-root">
-                                            <Link
-                                                to={"/order"}
-                                                style={{
-                                                    color:
-                                                        mode === "dark"
-                                                            ? "white"
-                                                            : "",
-                                                }}
-                                                className="-m-2 block p-2 font-medium text-gray-900"
-                                            >
-                                                Order
-                                            </Link>
-                                        </div>
-                                    ) : (
-                                        ""
-                                    )}
-
                                     {((user?.user?.email ===
                                     "uditpanchal1106@gmail.com") || (user?.user?.email === "kapil12vaishnav@gmail.com"))  ? (
                                         <div className="flow-root">
@@ -159,8 +147,22 @@ function NavBar() {
                                             </a>
                                         </div>
                                     ) : (
-                                        ""
+                                        <div className="flow-root">
+                                            <Link
+                                                to={"/order"}
+                                                style={{
+                                                    color:
+                                                        mode === "dark"
+                                                            ? "white"
+                                                            : "",
+                                                }}
+                                                className="-m-2 block p-2 font-medium text-gray-900 "
+                                            >
+                                                Login
+                                            </Link>
+                                        </div>
                                     )}
+
 
                                     <div className="flow-root">
                                         <Link
@@ -279,23 +281,6 @@ function NavBar() {
                                         All Projects
                                     </Link>
 
-                                    {user ? (
-                                        <Link
-                                            to={"/order"}
-                                            className={linkStyle}
-                                            style={{
-                                                color:
-                                                    mode === "dark"
-                                                        ? "white"
-                                                        : "",
-                                            }}
-                                        >
-                                            Order
-                                        </Link>
-                                    ) : (
-                                        " "
-                                    )}
-
                                     {((user?.user?.email ===
                                     "uditpanchal1106@gmail.com") || (user?.user?.email === "kapil12vaishnav@gmail.com")) ? (
                                         <Link
@@ -328,7 +313,18 @@ function NavBar() {
                                             Logout
                                         </a>
                                     ) : (
-                                        ""
+                                        <a
+                                            onClick={login}
+                                            className="text-sm font-medium text-gray-700 cursor-pointer hover:text-red-500 duration-200 "
+                                            style={{
+                                                color:
+                                                    mode === "dark"
+                                                        ? "white"
+                                                        : "",
+                                            }}
+                                        >
+                                            Login
+                                        </a>
                                     )}
                                 </div>
 

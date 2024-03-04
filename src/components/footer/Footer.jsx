@@ -84,7 +84,7 @@ export default function Footer() {
                         <nav className="list-none">
                             <li>
                                 <Link
-                                    to={"/about"}
+                                    to={"/aboutus"}
                                     className="text-gray-600 hover:text-gray-800"
                                     style={{
                                         color: mode === "dark" ? "white" : "",
