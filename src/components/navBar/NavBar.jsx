@@ -39,8 +39,7 @@ function NavBar() {
 
     const login = () => {
         setTimeout(() => {
-        window.location.href = "/login";
-            
+            window.location.href = "/login";
         }, 500);
     };
 
@@ -100,23 +99,43 @@ function NavBar() {
                                     </button>
                                 </div>
                                 <div className="space-y-6 border-t border-gray-200 px-4 py-6">
-                                    <Link
-                                        to={"/"}
-                                        className="text-sm font-medium text-gray-900 "
-                                        style={{
-                                            color:
-                                                mode === "dark" ? "white" : "",
-                                        }}
-                                    >
-                                        All Products
-                                    </Link>
+                                    <div className="flow-root">
+                                        <Link
+                                            to={"/"}
+                                            className="-m-2 block p-2 font-bold text-gray-900"
+                                            style={{
+                                                color:
+                                                    mode === "dark"
+                                                        ? "white"
+                                                        : "",
+                                            }}
+                                        >
+                                            All Products
+                                        </Link>
+                                    </div>
+                                    <div className="flow-root">
+                                        <Link
+                                            to={"/addproject"}
+                                            className="-m-2 block p-2 font-bold text-gray-900"
+                                            style={{
+                                                color:
+                                                    mode === "dark"
+                                                        ? "white"
+                                                        : "",
+                                            }}
+                                        >
+                                            Add Projects
+                                        </Link>
+                                    </div>
 
-                                    {((user?.user?.email ===
-                                    "uditpanchal1106@gmail.com") || (user?.user?.email === "kapil12vaishnav@gmail.com"))  ? (
+                                    {user?.user?.email ===
+                                        "uditpanchal1106@gmail.com" ||
+                                    user?.user?.email ===
+                                        "kapil12vaishnav@gmail.com" ? (
                                         <div className="flow-root">
                                             <Link
                                                 to={"/dashboard"}
-                                                className="-m-2 block p-2 font-medium text-gray-900"
+                                                className="-m-2 block p-2 font-bold text-gray-900"
                                                 style={{
                                                     color:
                                                         mode === "dark"
@@ -124,7 +143,7 @@ function NavBar() {
                                                             : "",
                                                 }}
                                             >
-                                                admin
+                                                Admin
                                             </Link>
                                         </div>
                                     ) : (
@@ -135,7 +154,7 @@ function NavBar() {
                                         <div className="flow-root">
                                             <a
                                                 onClick={logout}
-                                                className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer"
+                                                className="-m-2 block p-2 font-bold text-gray-900 cursor-pointer"
                                                 style={{
                                                     color:
                                                         mode === "dark"
@@ -156,54 +175,32 @@ function NavBar() {
                                                             ? "white"
                                                             : "",
                                                 }}
-                                                className="-m-2 block p-2 font-medium text-gray-900 "
+                                                className="-m-2 block p-2 font-bold text-gray-900 "
                                             >
                                                 Login
                                             </Link>
                                         </div>
                                     )}
-
+                                    <div className="border-t border-gray-200 "></div>
 
                                     <div className="flow-root">
                                         <Link
                                             to={"/"}
-                                            className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer"
+                                            className="-m-2 p-2 font-medium text-gray-900 cursor-pointer flex"
                                         >
                                             <img
                                                 className="inline-block w-10 h-10 rounded-full"
-                                                src="https://overreacted.io/static/profile-pic-c715447ce38098828758e525a1128b87.jpg"
-                                                alt="Dan_Abromov"
-                                            />{" "}
+                                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzewQ_JGAS5FVP6PWfoTSzZ9TnNJWuMJFfLg&usqp=CAU"
+                                                alt="Profile"
+                                            />
+                                            <div className=" p-2 font-bold ">
+                                                Profile
+                                            </div>
                                         </Link>
                                     </div>
                                 </div>
 
-                                <div className="border-t border-gray-200 px-4 py-6">
-                                    <a
-                                        href="#"
-                                        className="-m-2 flex items-center p-2"
-                                    >
-                                        <img
-                                            src="img/indiaflag.png"
-                                            alt=""
-                                            className="block h-auto w-5 flex-shrink-0"
-                                        />
-                                        <span
-                                            className="ml-3 block text-base font-medium text-gray-900"
-                                            style={{
-                                                color:
-                                                    mode === "dark"
-                                                        ? "white"
-                                                        : "",
-                                            }}
-                                        >
-                                            INDIA
-                                        </span>
-                                        <span className="sr-only">
-                                            , change currency
-                                        </span>
-                                    </a>
-                                </div>
+                                <div className="border-t border-gray-200 px-4 py-6"></div>
                             </Dialog.Panel>
                         </Transition.Child>
                     </div>
@@ -281,8 +278,21 @@ function NavBar() {
                                         All Projects
                                     </Link>
 
-                                    {((user?.user?.email ===
-                                    "uditpanchal1106@gmail.com") || (user?.user?.email === "kapil12vaishnav@gmail.com")) ? (
+                                    <Link
+                                        to={"/addproject"}
+                                        className={linkStyle}
+                                        style={{
+                                            color:
+                                                mode === "dark" ? "white" : "",
+                                        }}
+                                    >
+                                        Add Projects
+                                    </Link>
+
+                                    {user?.user?.email ===
+                                        "uditpanchal1106@gmail.com" ||
+                                    user?.user?.email ===
+                                        "kapil12vaishnav@gmail.com" ? (
                                         <Link
                                             to={"/dashboard"}
                                             className={linkStyle}

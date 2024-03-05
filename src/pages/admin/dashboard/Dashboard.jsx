@@ -6,9 +6,15 @@ import DashboardTab from './DashboardTab';
 
 function Dashboard() {
     const context = useContext(myContext)
-    const { mode, users, product} = context
+    const { mode, users, project} = context
   return (
     <Layout>
+                <h2
+                className=" text-center text-6xl font-semibold my-10"
+                style={{ color: mode === "dark" ? "white" : "" }}
+            >
+                Admin <span className=" text-pink-500">Dashboard</span>
+            </h2>
         <section className="text-gray-600 body-font mt-10 mb-10">
             <div className="container px-5 mx-auto mb-10">
                 <div className="flex flex-wrap -m-4 text-center">
@@ -17,7 +23,7 @@ function Dashboard() {
                             <div className="text-purple-500 w-12 h-12 mb-3 inline-block" viewBox="0 0 24 24">
                                 <FaUserTie size={50} />
                             </div>
-                            <h2 className="title-font font-medium text-3xl text-black fonts1" style={{ color: mode === 'dark' ? 'white' : ''}}>{product.length}</h2>
+                            <h2 className="title-font font-medium text-3xl text-black fonts1" style={{ color: mode === 'dark' ? 'white' : ''}}>{project.length}</h2>
                             <p className=" text-purple-500  font-bold" style={{ color: mode === 'dark' ? 'white' : ''}}>Total Projects</p>
                         </div>
                     </div>
@@ -35,7 +41,7 @@ function Dashboard() {
                             <div className="text-purple-500 w-12 h-12 mb-3 inline-block" viewBox="0 0 24 24">
                                 <FaUserTie size={50} />
                             </div>
-                            <h2 className="title-font font-medium text-3xl text-black fonts1" style={{ color: mode === 'dark' ? 'white' : ''}}>{product.length}</h2>
+                            <h2 className="title-font font-medium text-3xl text-black fonts1" style={{ color: mode === 'dark' ? 'white' : ''}}>{project.length}</h2>
                             <p className=" text-purple-500  font-bold" style={{ color: mode === 'dark' ? 'white' : ''}}>Total Projects</p>
                         </div>
                     </div>

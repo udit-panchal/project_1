@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import myContext from "../../context/myContext";
 import { useContext, useState } from "react";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { auth, fireDB } from "../../firebase/firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import Loader from "../../components/loader/Loader";
@@ -11,32 +12,10 @@ function Login() {
     // const [password, setPassword] = useState("");
 
     const context = useContext(myContext);
-    const { loading, setLoading, email, setEmail, password, setPassword} = context;
+    const { loading, setLoading, email, setEmail, password, setPassword, login} = context;
 
     const navigate = useNavigate();
 
-    const login = async () => {
-        setLoading(true);
-
-        try {
-            const result = await signInWithEmailAndPassword(
-                auth,
-                email,
-                password
-            );
-            localStorage.setItem("user", JSON.stringify(result));
-            toast.success("Signin Successfully");
-            setTimeout(() => {
-                window.location.href = "/";
-            }, 800);
-            // navigate("/");
-            setLoading(false);
-        } catch (error) {
-            console.log(error);
-            toast.error("Login Failed");
-            setLoading(false);
-        }
-    };
 
     return (
         <div className=" flex justify-center items-center h-screen">

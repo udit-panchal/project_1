@@ -12,7 +12,7 @@ function ProductInfo() {
     const context = useContext(myContext);
     const { loading, setLoading } = context;
 
-    const [products, setProducts] = useState("");
+    const [projects, setProjects] = useState("");
     const params = useParams();
 
     const getProductData = async () => {
@@ -20,10 +20,10 @@ function ProductInfo() {
 
         try {
             const productTemp = await getDoc(
-                doc(fireDB, "products", params.id)
+                doc(fireDB, "projects", params.id)
             );
 
-            setProducts(productTemp.data());
+            setProjects(productTemp.data());
 
             setLoading(false);
         } catch (error) {
@@ -40,9 +40,9 @@ function ProductInfo() {
     const dispatch = useDispatch();
     const cartItems = useSelector((state) => state.cart);
 
-    const addCart = (products) => {
-        dispatch(addToCart(products));
-        toast.success("add to cart");
+    const addCart = (projects) => {
+        dispatch(addToCart(projects));
+        toast.success("added to bookmark");
     };
 
     useEffect(() => {
@@ -53,19 +53,19 @@ function ProductInfo() {
         <Layout>
             <section className="text-gray-600 body-font overflow-hidden">
                 <div className="container px-5 py-32 mx-auto">
-                    {products && (
+                    {projects && (
                         <div className="lg:w-4/5 mx-auto flex flex-wrap">
                             <img
                                 alt="ecommerce"
                                 className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
-                                src={products.imageUrl}
+                                src={projects.imageUrl}
                             />
                             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-                                <h2 className="text-sm title-font text-gray-500 tracking-widest">
-                                    USER NAME
+                                <h2 className="text-sm title-font text-gray-500 tracking-widest capitalize">
+                                    {projects.category}
                                 </h2>
                                 <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
-                                    {products.title}
+                                    {projects.project_title}
                                 </h1>
                                 <div className="flex mb-4">
                                     <span className="flex items-center">
@@ -168,15 +168,46 @@ function ProductInfo() {
                                     </span>
                                 </div>
                                 <p className="leading-relaxed border-b-2 mb-5 pb-5">
-                                    {products.description}
+                                    {projects.description}
                                 </p>
-
-                                <div className="flex">
-                                    <span className="title-font font-medium text-2xl text-gray-900">
-                                        {products.price}
+                                <div className=" m-4 mb-5 grid grid-cols-2  items-center">
+                                    <div>
+                                        <h1 className="font-bold text-lg capitalize">
+                                            Team Members
+                                        </h1>
+                                        <p className=" capitalize">
+                                            {projects.team_member_1} (Team
+                                            Leader)
+                                        </p>
+                                        {projects.team_member_2 ? (
+                                            <p className=" capitalize">
+                                                {projects.team_member_2}
+                                            </p>
+                                        ) : (
+                                            " "
+                                        )}
+                                        {projects.team_member_3 ? (
+                                            <p className=" capitalize">
+                                                {projects.team_member_3}
+                                            </p>
+                                        ) : (
+                                            " "
+                                        )}
+                                    </div>
+                                    <div className=" text-right">
+                                        <h1 className="font-bold text-lg capitalize">College</h1>
+                                            <p>{projects.college}</p>
+                                        <h1 className="font-bold text-lg capitalize">University</h1>
+                                            <p>{projects.university}</p>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div className="flex mt-3">
+                                    <span className="title-font font-medium text-2xl text-gray-900  capitalize">
+                                        {projects.college}
                                     </span>
                                     <button
-                                        onClick={() => addCart(products)}
+                                        onClick={() => addCart(projects)}
                                         className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
                                     >
                                         Add To Bookmark

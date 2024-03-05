@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MyContext from "./myContext";
-import { fireDB } from "../firebase/firebaseConfig";
+import { fireDB, auth } from "../firebase/firebaseConfig";
 import {
     Timestamp,
     addDoc,
@@ -13,6 +13,7 @@ import {
     setDoc,
     getDocs,
 } from "firebase/firestore";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { toast } from "react-toastify";
 
 function MyState(props) {
@@ -32,10 +33,55 @@ function MyState(props) {
         }
     };
 
-    const [products, setProducts] = useState({
-        title: null,
-        price: null,
+    const login = async () => {
+        setLoading(true);
+        try {
+            const result = await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+            localStorage.setItem("user", JSON.stringify(result));
+            toast.success("Signin Successfully");
+            setTimeout(() => {
+                window.location.href = "/";
+            }, 800);
+            // navigate("/");
+            setLoading(false);
+        } catch (error) {
+            console.log(error);
+            toast.error("Login Failed");
+            setLoading(false);
+        }
+    };
+
+    // const [products, setProducts] = useState({
+    //     title: null,
+    //     price: null,
+    //     imageUrl: null,
+    //     category: null,
+    //     description: null,
+    //     user_email: email,
+    //     time: Timestamp.now(),
+    //     date: new Date().toLocaleString("en-US", {
+    //         month: "short",
+    //         day: "2-digit",
+    //         year: "numeric",
+    //     }),
+    // });
+
+    const [projects, setProjects] = useState({
+        project_title: null,
+        college: null,
+        university: null,
+        roll_no: null,
+        state: null,
+        city: null,
+        team_member_1: null,
+        team_member_2: null,
+        team_member_3: null,
         imageUrl: null,
+        githubUrl: null,
         category: null,
         description: null,
         time: Timestamp.now(),
@@ -47,56 +93,61 @@ function MyState(props) {
     });
 
     // ******* Add Product
-    const addProduct = async () => {
+    const addProject = async () => {
         if (
-            products.title == null ||
-            products.price == null ||
-            products.imageUrl == null ||
-            products.category == null ||
-            products.description == null
+            projects.project_title == null ||
+            projects.imageUrl == null ||
+            projects.roll_no == null ||
+            projects.college == null ||
+            projects.university == null ||
+            projects.state == null ||
+            projects.city == null ||
+            projects.team_member_1 == null ||
+            projects.category == null ||
+            projects.description == null ||
+            projects.githubUrl == null
         ) {
             return toast.error("Please fill all fields");
         }
 
-        
-        const productRef = collection(fireDB, "/products");
+        const projectRef = collection(fireDB, "/projects");
         setLoading(true);
         try {
-            await addDoc(productRef, products);
+            await addDoc(projectRef, projects);
             toast.success("Product Add successfully");
-            getProductData();
+            getProjectData();
             // closeModal();
             setLoading(false);
-            setProducts("");
+            setProjects("");
             setTimeout(() => {
                 window.location.href = "/dashboard";
             }, 1000);
-            console.log(products);
+            console.log(projects);
         } catch (error) {
             console.log(error);
             setLoading(false);
         }
     };
 
-    const [product, setProduct] = useState([]);
+    const [project, setProject] = useState([]);
 
     // ******* Get Product Data
-    const getProductData = async () => {
+    const getProjectData = async () => {
         setLoading(true);
         try {
             const q = query(
-                collection(fireDB, "products"),
+                collection(fireDB, "projects"),
                 orderBy("time")
                 // limit(5)
             );
             const data = onSnapshot(q, (QuerySnapshot) => {
-                let productsArray = [];
+                let projectArray = [];
 
                 QuerySnapshot.forEach((doc) => {
-                    productsArray.push({ ...doc.data(), id: doc.id });
+                    projectArray.push({ ...doc.data(), id: doc.id });
                 });
 
-                setProduct(productsArray);
+                setProject(projectArray);
                 setLoading(false);
             });
             return () => data;
@@ -107,17 +158,17 @@ function MyState(props) {
     };
 
     const edithandle = (item) => {
-        setProducts(item);
+        setProjects(item);
     };
 
     // ******* Update Product
-    const updateProduct = async (item) => {
+    const updateProject = async (item) => {
         setLoading(true);
 
         try {
-            await setDoc(doc(fireDB, "products", products.id), products);
-            toast.success("Product Update Succefully");
-            getProductData();
+            await setDoc(doc(fireDB, "projects", projects.id), projects);
+            toast.success("Project Update Succefully");
+            getProjectData();
             setLoading(false);
             setTimeout(() => {
                 window.location.href = "/dashboard";
@@ -126,18 +177,18 @@ function MyState(props) {
         } catch (error) {
             console.log(error);
             setLoading(false);
-            toast.error("Product Update Failed");
+            toast.error("Project Update Failed");
         }
-        setProducts("");
+        setProjects("");
     };
 
     // ******* Delete Product
-    const deleteProduct = async (item) => {
+    const deleteProject = async (item) => {
         setLoading(true);
         try {
-            await deleteDoc(doc(fireDB, "products", item.id));
-            toast.success("Product Delete Successfully");
-            getProductData();
+            await deleteDoc(doc(fireDB, "projects", item.id));
+            toast.success("Project Delete Successfully");
+            getProjectData();
             setLoading(false);
         } catch (error) {
             setLoading(false);
@@ -161,7 +212,6 @@ function MyState(props) {
             });
 
             setUser(usersArray);
-
             console.log(usersArray);
 
             setLoading(false);
@@ -174,13 +224,12 @@ function MyState(props) {
 
     useEffect(() => {
         getUserData();
-        getProductData();
+        getProjectData();
     }, []);
-    
 
     const [searchKey, setSearchKey] = useState("");
     const [filterType, setFilterType] = useState("");
-    const [filterPrice, setFilterPrice] = useState("");
+    const [filterCollege, setFilterCollege] = useState("");
 
     return (
         <MyContext.Provider
@@ -189,26 +238,27 @@ function MyState(props) {
                 toggleMode,
                 loading,
                 setLoading,
-                product,
-                setProduct,
-                addProduct,
-                products,
-                setProducts,
-                updateProduct,
-                deleteProduct,
+                project,
+                setProject,
+                addProject,
+                projects,
+                setProjects,
+                updateProject,
+                deleteProject,
                 edithandle,
                 getUserData,
                 users,
-                searchKey, 
+                searchKey,
                 filterType,
-                filterPrice,
+                filterCollege,
                 setSearchKey,
-                setFilterPrice,
+                setFilterCollege,
                 setFilterType,
                 email,
                 setEmail,
-                password, 
+                password,
                 setPassword,
+                login,
             }}
         >
             {props.children}

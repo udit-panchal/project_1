@@ -7,7 +7,7 @@ import { deleteFromCart } from "../../redux/cartSlice";
 
 function Bookmarks() {
     const context = useContext(myContext);
-    const { mode,  } = context;
+    const { mode  } = context;
 
     const dispatch = useDispatch();
 
@@ -33,13 +33,16 @@ function Bookmarks() {
                     color: mode === "dark" ? "white" : "",
                 }}
             >
-                <h1 className="mb-10 text-center text-2xl font-bold">
-                    Bookmark Items
-                </h1>
+            <h2
+                className=" text-center text-6xl font-semibold my-10"
+                style={{ color: mode === "dark" ? "white" : "" }}
+            >
+                <span className=" text-pink-500">Bookmark</span> Items
+            </h2>
 
                 {cartItems.map((item,index)=>{
 
-                    const {title, price, description, imageUrl} = item;
+                    const {project_title, college, description, imageUrl} = item;
 
                     return (
                         <div key={index} className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0 ">
@@ -66,7 +69,7 @@ function Bookmarks() {
                                                 mode === "dark" ? "white" : "",
                                         }}
                                     >
-                                        {title}
+                                        {project_title}
                                     </h2>
                                     <h2
                                         className="text-sm line-clamp-5 text-gray-900"
@@ -78,13 +81,13 @@ function Bookmarks() {
                                         {description}
                                     </h2>
                                     <p
-                                        className="mt-1 text-xs font-semibold text-gray-700"
+                                        className="mt-1 text-sm font-bold text-gray-700"
                                         style={{
                                             color:
                                                 mode === "dark" ? "white" : "",
                                         }}
                                     >
-                                        $ {price}
+                                        {college}
                                     </p>
                                 </div>
                                 <div onClick={()=>deleteCart(item)} className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">

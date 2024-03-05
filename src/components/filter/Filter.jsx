@@ -8,16 +8,16 @@ function Filter() {
         mode,
         searchKey,
         filterType,
-        filterPrice,
+        filterCollege,
         setSearchKey,
-        setFilterPrice,
+        setFilterCollege,
         setFilterType,
-        product,
+        project,
         uid,
     } = context;
 
     const reset = () => {
-        setFilterPrice("");
+        setFilterCollege("");
         setFilterType("");
         setSearchKey("");
     };
@@ -77,7 +77,7 @@ function Filter() {
                                 <option value="" disabled>
                                     Select Category
                                 </option>
-                                {product.map((item, index) => {
+                                {project.map((item, index) => {
                                     const { category } = item;
                                     return (
                                         <option value={category}>
@@ -87,8 +87,8 @@ function Filter() {
                                 })}
                             </select>
                             <select
-                                value={filterPrice}
-                                onChange={(e) => setFilterPrice(e.target.value)}
+                                value={filterCollege}
+                                onChange={(e) => setFilterCollege(e.target.value)}
                                 className="px-4 py-3 w-full rounded-md bg-gray-50 border-transparent outline-0  focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
                                 style={{
                                     backgroundColor:
@@ -97,12 +97,12 @@ function Filter() {
                                 }}
                             >
                                 <option value="" disabled>
-                                    Select ----
+                                    Select College
                                 </option>
-                                {product.map((item, index) => {
-                                    const { price } = item;
+                                {project.map((item, index) => {
+                                    const { college } = item;
                                     return (
-                                        <option value={price}>{price}</option>
+                                        <option value={college}>{college}</option>
                                     );
                                 })}
                             </select>

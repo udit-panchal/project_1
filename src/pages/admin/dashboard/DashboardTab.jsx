@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 function DashboardTab() {
     const context = useContext(myContext);
-    const { mode, product, deleteProduct, edithandle , users} = context;
+    const { mode, project, deleteProject, edithandle , users} = context;
 
     let [isOpen, setIsOpen] = useState(false);
 
@@ -21,7 +21,7 @@ function DashboardTab() {
     }
 
     const add = () => {
-        window.location.href = "/addproduct";
+        window.location.href = "/addproject";
     };
 
     
@@ -92,7 +92,7 @@ function DashboardTab() {
                                     >
                                         {" "}
                                         <div className="flex gap-2 items-center">
-                                            Add Product <FaCartPlus size={20} />
+                                            Add Project <FaCartPlus size={20} />
                                         </div>
                                     </button>
                                 </div>
@@ -128,13 +128,13 @@ function DashboardTab() {
                                                     scope="col"
                                                     className="px-6 py-3"
                                                 >
-                                                    Title
+                                                    Project Title
                                                 </th>
                                                 <th
                                                     scope="col"
                                                     className="px-6 py-3"
                                                 >
-                                                    Price
+                                                    College
                                                 </th>
                                                 <th
                                                     scope="col"
@@ -157,10 +157,10 @@ function DashboardTab() {
                                             </tr>
                                         </thead>
 
-                                        {product.map((item, index) => {
+                                        {project.map((item, index) => {
                                             const {
-                                                title,
-                                                price,
+                                                project_title,
+                                                college,
                                                 imageUrl,
                                                 category,
                                                 date,
@@ -212,7 +212,7 @@ function DashboardTab() {
                                                                         : "",
                                                             }}
                                                         >
-                                                            {title}
+                                                            {project_title}
                                                         </td>
                                                         <td
                                                             className="px-6 py-4 text-black "
@@ -224,7 +224,7 @@ function DashboardTab() {
                                                                         : "",
                                                             }}
                                                         >
-                                                            {price}
+                                                            {college}
                                                         </td>
                                                         <td
                                                             className="px-6 py-4 text-black "
@@ -264,7 +264,7 @@ function DashboardTab() {
                                                                 >
                                                                     <div
                                                                         onClick={() =>
-                                                                            deleteProduct(
+                                                                            deleteProject(
                                                                                 item
                                                                             )
                                                                         }

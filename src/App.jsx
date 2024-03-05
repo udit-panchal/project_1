@@ -10,8 +10,8 @@ import MyState from "./context/myState";
 import Login from "./pages/registration/Login";
 import Signup from "./pages/registration/Signin";
 import ProductInfo from "./pages/projectInfo/ProjectInfo";
-import AddProduct from "./pages/admin/page/AddProduct";
-import UpdateProduct from "./pages/admin/page/UpdateProduct";
+import AddProduct from "./pages/admin/page/AddProject";
+import UpdateProduct from "./pages/admin/page/UpdateProject";
 import AllProjects from "./pages/allProjects/AllProjects";
 import AboutUs from "./pages/aboutus/AboutUs";
 
@@ -42,7 +42,7 @@ function App() {
                         element={<ProductInfo />}
                     ></Route>
                     <Route path="/bookmarks" element={<Bookmarks />}></Route>
-                    <Route path="/addproduct" element={<AddProduct />}></Route>
+                    <Route path="/addproject" element={<AddProduct />}></Route>
                     <Route
                         path="/updateproduct"
                         element={<UpdateProduct />}

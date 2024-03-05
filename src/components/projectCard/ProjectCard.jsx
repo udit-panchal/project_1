@@ -2,27 +2,31 @@ import React, { useContext, useEffect } from "react";
 import myContext from "../../context/myContext";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/cartSlice";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+
 
 function ProductCard() {
     const context = useContext(myContext);
     const {
         mode,
-        product,
+        project,
         searchKey,
         filterType,
-        filterPrice,
+        filterCollege,
         setSearchKey,
-        setFilterPrice,
+        setFilterCollege,
         setFilterType,
     } = context;
 
     const dispatch = useDispatch();
     const cartItems = useSelector((state) => state.cart);
-    console.log(cartItems);
 
-    const addCart = (product) => {
-        dispatch(addToCart(product));
-        toast.success("Add To Cart");
+
+    const addCart = (projects) => {
+        dispatch(addToCart(projects));
+        toast.success("added to bookmark");
     };
 
     useEffect(() => {
@@ -37,23 +41,15 @@ function ProductCard() {
                         class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900"
                         style={{ color: mode === "dark" ? "white" : "" }}
                     >
-                        Our Latest Collection
+                        Our Latest Projects
                     </h1>
                     <div class="h-1 w-20 bg-pink-600 rounded"></div>
                 </div>
 
                 <div className="flex flex-wrap -m-4">
-                    {product
-                        .filter((obj) =>
-                            obj.title.toLowerCase().includes(searchKey)
-                        )
-                        .filter((obj) =>
-                            obj.category.includes(filterType)
-                        )
-                        .filter((obj) => obj.price.includes(filterPrice))
-                        .slice(0, 8)
+                    {project.filter((obj)=> obj.project_title.toLowerCase().includes(searchKey)).filter((obj)=>obj.category.includes(filterType)).filter((obj)=>obj.college.includes(filterCollege)).slice(0,8)
                         .map((item, index) => {
-                            const { title, price, description, imageUrl, id } =
+                            const { project_title, college, description, imageUrl, id } =
                                 item;
                             return (
                                 <div key={id} className="p-4 md:w-1/4  drop-shadow-lg ">
@@ -107,7 +103,7 @@ function ProductCard() {
                                                                 : "",
                                                     }}
                                                 >
-                                                    {title}
+                                                    {project_title}
                                                 </h1>
 
                                                 {/* price */}
@@ -121,7 +117,7 @@ function ProductCard() {
                                                                 : "",
                                                     }}
                                                 >
-                                                    {price}
+                                                    {college}
                                                 </p>
                                             </div>
                                         </div>
