@@ -157,7 +157,7 @@ function AllProjects() {
                                                         type="button"
                                                         className="focus:outline-none h-14 text-white bg-[#8E7AB5] hover:bg-[#B784B7] focus:ring-4 focus:ring-purple-300 font-medium rounded-b-lg text-sm w-full py-2"
                                                     >
-                                                        Add To Cart
+                                                        Add To Bookmark
                                                     </button>
                                                 </div>
                                             </div>
